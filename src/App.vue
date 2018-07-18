@@ -4,7 +4,9 @@
       宽：<input type="text" v-model.number="row" :key="1">
       高：<input type="text" v-model.number="span" :key="2">
     </div>
-    <vue-screen-layout :row="row" :span="span"></vue-screen-layout>
+    <vue-screen-layout :row="row" :span="span">
+      <template slot="11"><span>77</span></template>
+    </vue-screen-layout>
   </div>
 </template>
 

@@ -2,7 +2,7 @@
   <div class="core">
     <div v-for="item in row" :key="item" :style="{width: rowWidth + '%', height: rowHeight + '%'}">
       <div v-for="sub in span" :key="sub" :style="{width: spanWidth + '%', height: spanHeight + '%'}">
-        {{ sub }}
+        <slot :name="item+''+sub"></slot>
       </div>
     </div>
   </div>
@@ -47,5 +47,6 @@ export default {
   .core div div {
     border: 1px solid coral;
     display: inline-block;
+    vertical-align: top;
   }
 </style>
