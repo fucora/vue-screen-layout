@@ -1,11 +1,11 @@
 <template>
   <div id="app">
     <div style="margin: 17px">
-      宽：<input type="text" v-model.number="row" :key="1">
-      高：<input type="text" v-model.number="span" :key="2">
+      宽：<input type="text" v-model.number="span">
+      高：<input type="text" v-model.number="row">
+      merge: <input type="text" v-model="merge">
     </div>
-    <vue-screen-layout :row="row" :span="span">
-      <template slot="11"><span>77</span></template>
+    <vue-screen-layout :row="row" :span="span" :merge="grid">
     </vue-screen-layout>
   </div>
 </template>
@@ -17,7 +17,16 @@ export default {
   data () {
     return {
       row: 1,
-      span: 1
+      span: 1,
+      grid: {
+        home: []
+      },
+      merge: ''
+    }
+  },
+  watch: {
+    merge(val){
+      this.grid.home = val.split(',')
     }
   },
   components: {
