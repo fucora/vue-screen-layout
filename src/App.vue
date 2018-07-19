@@ -5,7 +5,7 @@
       高：<input type="text" v-model.number="row">
       merge: <input type="text" v-model="merge">
     </div>
-    <vue-screen-layout :row="row" :span="span" :merge="grid">
+    <vue-screen-layout :row="row" :span="span" :merge="grid" :config="true">
     </vue-screen-layout>
   </div>
 </template>
@@ -16,10 +16,10 @@ export default {
   name: 'app',
   data () {
     return {
-      row: 1,
-      span: 1,
+      row: 4,
+      span: 4,
       grid: {
-        home: []
+        home: ['12','23']
       },
       merge: ''
     }

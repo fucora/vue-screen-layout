@@ -1,11 +1,18 @@
 <template>
   <div class="core">
-    <div v-for="item in row" :key="item" :style="{width: rowWidth + '%', height: rowHeight + '%'}">
-      <div class="grid" v-for="sub in span" v-hidden="mergeList.indexOf(item+''+sub)!==-1" :key="sub" :style="{width: spanWidth + '%', height: spanHeight + '%'}">
-        <slot :name="item+''+sub">{{ item+''+sub }}</slot>
+    <div v-for="item in row" :key="item"
+         :style="{width: rowWidth + '%', height: rowHeight + '%'}">
+      <div class="grid" v-for="sub in span" v-hidden="mergeList.indexOf(item+''+sub)!==-1" :key="sub"
+           :style="{width: spanWidth + '%', height: spanHeight + '%', background: config ? gridColor[Math.floor(Math.random()*(item*sub))] : ''}">
+        <slot :name="item+''+sub"></slot>
+        <template v-if="config">
+          {{ item+''+sub }}
+        </template>
       </div>
     </div>
-    <div v-for="(value, key) in mergeStyle" :style="{width: value.width * spanWidth + '%', height: value.height * rowHeight  + '%',left: value.left * spanWidth + '%',top: value.top * rowHeight + '%'}" class="incorporated">
+    <div v-for="(value, key) in mergeStyle"
+         :style="{width: value.width * spanWidth + '%', height: value.height * rowHeight  + '%',left: value.left * spanWidth + '%',top: value.top * rowHeight + '%'}"
+         :class="{incorporated:config}">
       <slot :name="key"></slot>
     </div>
   </div>
@@ -41,19 +48,16 @@ export default {
       default () {
         return {}
       }
+    },
+    config: {
+      type: Boolean,
+      default: false
     }
   },
   data () {
     return {
       rowWidth: 100,
-      spanHeight: 100,
-      incorporated: {
-        position: 'absolute',
-        let: 0,
-        top: 0,
-        width: 0,
-        height: 0
-      }
+      spanHeight: 100
     }
   },
   methods: {
@@ -87,6 +91,7 @@ export default {
       let attrs = Object.keys(this.merge)
       let style = {}
       attrs.forEach((item) => {
+        if(this.merge[item].length === 0) return style
         let max = Math.max.apply(null, this.merge[item])
         let min = Math.min.apply(null, this.merge[item])
         let top = Math.floor(min / 10)
@@ -100,11 +105,24 @@ export default {
         }
       })
       return style
+    },
+    gridColor () {
+      let len = this.row * this.span
+      let color = []
+      for (let i = 0; i < len; i++) {
+        color[i] = `rgba(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255}, 0.4)`
+      }
+      return color
     }
   },
   directives: {
     hidden: {
       update (el, binding) {
+        binding.value
+          ? el.style.visibility = 'hidden'
+          : el.style.visibility = 'visible'
+      },
+      inserted (el, binding) {
         binding.value
           ? el.style.visibility = 'hidden'
           : el.style.visibility = 'visible'
@@ -123,7 +141,6 @@ export default {
     box-sizing: border-box;
   }
   .core .grid {
-    border: 1px solid coral;
     display: inline-block;
     vertical-align: top;
   }
