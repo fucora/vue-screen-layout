@@ -19,7 +19,8 @@ export default {
       row: 4,
       span: 4,
       grid: {
-        home: ['12','23']
+        home: ['12','23'],
+        test: ['43','44']
       },
       merge: ''
     }

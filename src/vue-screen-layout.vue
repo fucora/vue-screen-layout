@@ -5,15 +5,18 @@
       <div class="grid" v-for="sub in span" v-hidden="mergeList.indexOf(item+''+sub)!==-1" :key="sub"
            :style="{width: spanWidth + '%', height: spanHeight + '%', background: config ? gridColor[Math.floor(Math.random()*(item*sub))] : ''}">
         <slot :name="item+''+sub"></slot>
-        <template v-if="config">
+        <template v-if="config && mergeList.indexOf(item+''+sub)===-1">
           {{ item+''+sub }}
         </template>
       </div>
     </div>
     <div v-for="(value, key) in mergeStyle"
-         :style="{width: value.width * spanWidth + '%', height: value.height * rowHeight  + '%',left: value.left * spanWidth + '%',top: value.top * rowHeight + '%'}"
+         :style="{position: 'absolute', width: value.width * spanWidth + '%', height: value.height * rowHeight  + '%',left: value.left * spanWidth + '%',top: value.top * rowHeight + '%'}"
          :class="{incorporated:config}">
       <slot :name="key"></slot>
+      <template v-if="config">
+        {{ value.name }}
+      </template>
     </div>
   </div>
 </template>
@@ -60,11 +63,6 @@ export default {
       spanHeight: 100
     }
   },
-  methods: {
-    checkNum (val) {
-      return /^[0-9]$/.test(val)
-    }
-  },
   watch: {
     merge: {
       deep: true,
@@ -83,7 +81,18 @@ export default {
       let attrs = Object.keys(this.merge)
       let arr = []
       attrs.forEach((item) => {
-        arr = arr.concat(this.merge[item])
+        let max, min, rowStart, rowEnd, spanStart, spanEnd
+        max = Math.max.apply(null, this.merge[item])
+        min = Math.min.apply(null, this.merge[item])
+        rowStart = Math.floor(min / 10)
+        rowEnd = Math.floor(max / 10)
+        spanStart = min % 10
+        spanEnd = max % 10
+        for (let i = rowStart; i <= rowEnd; i++) {
+          for (let j = spanStart; j <= spanEnd; j++) {
+            arr.push( i + '' + j)
+          }
+        }
       })
       return arr
     },
@@ -145,7 +154,6 @@ export default {
     vertical-align: top;
   }
   .incorporated {
-    position: absolute;
     background: lightseagreen;
   }
 </style>
