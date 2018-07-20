@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import VueScreenLayout from './vue-screen-layout.vue'
+import VueScreenLayout from '../src/vue-screen-layout.vue'
 export default {
   name: 'app',
   data () {
