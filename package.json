@@ -1,10 +1,12 @@
 {
   "name": "vue-screen-layout",
-  "description": "A Vue.js project",
+  "description": "A fast screen layout component based on Vue.js",
   "version": "1.0.0",
-  "author": "markyong <1654818917@qq.com>",
+  "author": "markyong",
+  "main": "dist/vue-screen-layout.main.js",
   "license": "MIT",
   "private": false,
+  "homepage": "http://markyong.github.io/vue-screen-layout/demo/",
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack-dev-server --open --hot",
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
