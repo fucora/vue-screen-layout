@@ -1,10 +1,11 @@
 {
   "name": "vue-screen-layout",
   "description": "A fast screen layout component based on Vue.js",
-  "version": "1.0.0",
-  "author": "markyong",
+  "version": "1.0.1",
+  "author": "markyong <mayyyyyyyong@gmail.com>",
   "main": "dist/vue-screen-layout.main.js",
   "license": "MIT",
+  "keywords": ["vue", "screen", "layout", "vue-component"],
   "private": false,
   "homepage": "http://markyong.github.io/vue-screen-layout/demo/",
   "scripts": {

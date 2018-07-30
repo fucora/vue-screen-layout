@@ -1,5 +1,5 @@
 # vue-screen-layout
-> 一个快速布局的Vue组件，主要为大屏展示设计
+> A fast screen layout component based on Vue.js
 ## How to use?
 `npm install vue-screen-layout`
 ## Example
