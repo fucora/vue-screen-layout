@@ -8,12 +8,16 @@
       padding: 0;
       margin: 0;
     }
-
     #app {
       width: 1000px;
-      margin: 0 auto;
+      margin: 0 auto 27px;
     }
-
+    h1 {
+      color: #03D2A7;
+      width: 100%;
+      text-align: center;
+      margin-top: 27px;
+    }
     .github-corner:hover .octo-arm {
       animation: octocat-wave 560ms ease-in-out
     }
@@ -40,6 +44,24 @@
         animation: octocat-wave 560ms ease-in-out
       }
     }
+    .btn {
+      display: inline-block;
+      width: 47px;
+      height: 23px;
+      line-height: 23px;
+      color: #03D2A7;
+      text-align: center;
+      border-radius: 3px;
+      font-size: 12px;
+      cursor: pointer;
+      border: 1px dashed #999;
+      box-sizing: border-box;
+    }
+    .btn:hover {
+      background: #03D2A7;
+      color: #fff;
+      border: none;
+    }
   </style>
 </head>
 <body>
@@ -58,13 +80,15 @@
   </svg>
 </a>
 <div id="app">
+  <h1>vue-screen-layout</h1>
   <div style="height: 77px;text-align: center;line-height: 77px">
     宽：<input type="text" v-model.number="span">
     高：<input type="text" v-model.number="row">
     merge: <input type="text" v-model="merge">
+    config: <div class="btn" @click="config = !config">{{ config ? "关闭" : "开启" }}</div>
   </div>
   <div style="width: 100%;height: 500px;overflow: hidden;">
-    <vue-screen-layout :row="row" :span="span" :merge="grid" :config="true">
+    <vue-screen-layout :row="row" :span="span" :merge="grid" :config="config">
       <div slot="11">
       </div>
     </vue-screen-layout>
@@ -78,10 +102,10 @@
       row: 4,
       span: 4,
       grid: {
-        home: ['12', '23'],
-        test: ['43', '44']
+        home: ['12', '23']
       },
-      merge: ''
+      merge: '12,23',
+      config: true
     },
     watch: {
       merge(val){

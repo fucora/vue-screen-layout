@@ -27,22 +27,24 @@ export default {
     row: {
       type: Number,
       default: 1,
+      required: true,
       validator (value) {
-        if(/^[0-9]$/.test(value)){
+        if(/^[1-9]$/.test(value)){
           return true
         } else {
-          console.error('Invalid prop: type check failed for prop "row". Expected an integer between 0 and 9, but can\'t get')
+          console.error('Invalid prop: type check failed for prop "row". Expected an integer between 1 and 9, but can\'t get')
         }
       }
     },
     span: {
       type: Number,
       default: 1,
+      required: true,
       validator (value) {
-        if(/^[0-9]$/.test(value)){
+        if(/^[1-9]$/.test(value)){
           return true
         } else {
-          console.error('Invalid prop: type check failed for prop "span". Expected an integer between 0 and 9, but can\'t get')
+          console.error('Invalid prop: type check failed for prop "span". Expected an integer between 1 and 9, but can\'t get')
         }
       }
     },
@@ -61,13 +63,6 @@ export default {
     return {
       rowWidth: 100,
       spanHeight: 100
-    }
-  },
-  watch: {
-    merge: {
-      deep: true,
-      handler: function (val) {
-      }
     }
   },
   computed: {
@@ -122,20 +117,6 @@ export default {
         color[i] = `rgba(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255}, 0.4)`
       }
       return color
-    }
-  },
-  directives: {
-    hidden: {
-      update (el, binding) {
-        binding.value
-          ? el.style.visibility = 'hidden'
-          : el.style.visibility = 'visible'
-      },
-      inserted (el, binding) {
-        binding.value
-          ? el.style.visibility = 'hidden'
-          : el.style.visibility = 'visible'
-      }
     }
   }
 }
