@@ -6,7 +6,10 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, './dist'),
     publicPath: '/dist/',
-    filename: 'vue-screen-layout.main.js'
+    filename: 'vue-screen-layout.main.js',
+    library: 'vue-screen-layout',
+    libraryTarget: 'umd',
+    umdNamedDefine: true
   },
   module: {
     rules: [
