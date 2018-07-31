@@ -37,5 +37,5 @@ export default {
 ## Explain
 `vue-screen-layout`默认会生成span*row块div（屏幕），当你需要为某块div添加内容时，你只需要这样做：
 1. `<template slot="12"></tempalte>`，具体的slot name，你可以打开config去查看（可以想象一个坐标系）。
-2. `merge`需要传入一个对象，key为将来要用的slot name，value为你要合并的内容，只需要传入对应的位置（告诉它最小位置和最大位置，画一个矩形），也可以打开config去看。
+2. `merge`需要传入一个对象，key为将来要用的slot name，value为你要合并的内容，只需要传入对应的位置（告诉它最小位置和最大位置，画一个矩形。比如：["12", "23"]指将<12,13,22,23>这四块合并为一块），也可以打开config去看。
 
