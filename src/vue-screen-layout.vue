@@ -2,7 +2,7 @@
   <div class="core">
     <div v-for="item in row" :key="item"
          :style="{width: rowWidth + '%', height: rowHeight + '%'}">
-      <div class="grid" v-for="sub in span" v-hidden="mergeList.indexOf(item+''+sub)!==-1" :key="sub"
+      <div class="grid" v-for="sub in span" :key="sub"
            :style="{width: spanWidth + '%', height: spanHeight + '%', background: config ? gridColor[Math.floor(Math.random()*(item*sub))] : ''}">
         <slot :name="item+''+sub"></slot>
         <template v-if="config && mergeList.indexOf(item+''+sub)===-1">
@@ -111,6 +111,7 @@ export default {
       return style
     },
     gridColor () {
+      if(!this.config) return ''
       let len = this.row * this.span
       let color = []
       for (let i = 0; i < len; i++) {
