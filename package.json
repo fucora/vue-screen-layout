@@ -1,7 +1,7 @@
 {
   "name": "vue-screen-layout",
   "description": "A fast screen layout component based on Vue.js",
-  "version": "1.0.7",
+  "version": "1.0.9",
   "author": "markyong <mayyyyyyyong@gmail.com>",
   "main": "dist/vue-screen-layout.main.js",
   "license": "MIT",
